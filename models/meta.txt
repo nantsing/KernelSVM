@@ -1,2 +1,0 @@
-Count: 1
-C: 1.0,  kernel: rbf,  degree: 3,  gamma: scale,  coef0: 0.0,  shirinking: True,  tol: 0.001,  max_iter: -1,  decision_function_shape: ovr,  random_state: None,  testAccuracy: 0.8795,  

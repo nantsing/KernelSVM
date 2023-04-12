@@ -33,12 +33,15 @@ def trainAndtest_SVM(H_train, Y_train, H_test, Y_test, C = 1.0, kernel = 'rbf', 
     
     is_load = False
     with open('./models/meta.txt', 'r') as file:
-        contents = file.read().split('\n')[0]
-        count = int(contents.split(' ')[1])
+        contents = file.read().split('\n')
+        count = int(contents[0].split(' ')[1])
         for i in range(1, count + 1):
-            content = contents[i].split(',')[1::2]
-            if (content == values).all():
+            content = contents[i].split(' ')[1:20:2]
+            # print(content)
+            # print(values)
+            if content == values:
                 is_load = True
+                print(i)
                 SVM = LoadModel(f'./models/{i}.pkl')
                 break
             
@@ -53,10 +56,10 @@ def trainAndtest_SVM(H_train, Y_train, H_test, Y_test, C = 1.0, kernel = 'rbf', 
     if is_save and not is_load:
         with open('./models/meta.txt', 'a') as file:
             for p, v in zip(parameters, values):
-                file.writelines(f'{p}: {v},  ')
+                file.writelines(f'{p}: {v} ')
             file.write('\n')
         
-        print(count)
+        # print(count)
         ## Change count
         with open('./models/meta.txt',mode='r') as file:
             data = file.read()
@@ -81,8 +84,16 @@ if __name__ == '__main__':
 ######################## Implement you code here #######################
 ########################################################################
 
-########################### Linear SVM #################################    
-    LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel= 'linear')
+########################### Linear SVM #################################
+    for kernel in ['linear', 'poly']   : 
+        for C in [0.1, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0]:
+            for gamma in ['scale', 'auto']:
+                if kernel == 'linear': gamma = 'scale'
+                for coef0 in [0.0, 1.0]:
+                    if kernel == 'linear': coef0 = 0.0
+                    for shrinking in [True, False]:
+                        LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = kernel, C = C, \
+                            gamma = gamma, coef0 = coef0, shrinking = shrinking, decision_function_shape = 'ovr')
 
 ########################### RBF kernel SVM #############################
 
