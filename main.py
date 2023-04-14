@@ -85,19 +85,24 @@ if __name__ == '__main__':
 ########################################################################
 
 ########################### Linear SVM #################################
-    for kernel in ['linear', 'poly']   : 
-        for C in [0.1, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0]:
-            for gamma in ['scale', 'auto']:
-                if kernel == 'linear': gamma = 'scale'
-                for coef0 in [0.0, 1.0]:
-                    if kernel == 'linear': coef0 = 0.0
-                    for shrinking in [True, False]:
-                        LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = kernel, C = C, \
-                            gamma = gamma, coef0 = coef0, shrinking = shrinking, decision_function_shape = 'ovr')
+    # for C in [0.1, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0]:
+    #     for shrinking in [True, False]:
+    #         LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'linear', C = C, \
+    #             gamma = 'scale', coef0 = 0.0, shrinking = shrinking, decision_function_shape = 'ovr')
 
 ########################### RBF kernel SVM #############################
 
+    # for C in [0.1, 0.5, 1.0, 1.5, 2.0, 5.0, 10.0]:
+    #     for gamma in ['scale', 'auto']:
+    #         for shrinking in [True, False]:
+    #             RBFSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'rbf', C = C, \
+    #             gamma = gamma, coef0 = 0.0, shrinking = shrinking, decision_function_shape = 'ovr')
 
+####################### Polynomial kernel SVM ###########################
 
-
-####################### polynomial kernel SVM ###########################
+    for C in [0.1, 1.0, 2.0, 5.0]:
+        for degree in [1, 2, 3, 4]:
+            for coef0 in [0.0, 1.0, 5.0]:
+                for gamma in ['scale', 'auto']:
+                    PolySVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'poly', C = C, \
+                    degree = degree, gamma = gamma, coef0 = coef0, shrinking = True, decision_function_shape = 'ovr')
