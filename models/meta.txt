@@ -15,9 +15,7 @@ C: 5.0 kernel: rbf degree: 3 gamma: 0.0001 coef0: 0.0 shirinking: True tol: 0.00
 C: 0.5 kernel: poly degree: 1 gamma: scale coef0: 1.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.8445 
 C: 0.5 kernel: poly degree: 2 gamma: scale coef0: 1.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.876 
 C: 0.5 kernel: poly degree: 3 gamma: scale coef0: 1.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.885 
-C: 0.5 kernel: poly degree: 4 gamma: scale coef0: 1.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.8725 C: 0.1 kernel: poly degree: 3 gamma: scale coef0: 0.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.825 
-C: 0.1 kernel: poly degree: 3 gamma: scale coef0: 1.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.8745 
-C: 0.1 kernel: poly degree: 3 gamma: scale coef0: 5.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.8805 
+C: 0.5 kernel: poly degree: 4 gamma: scale coef0: 1.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.8725 
 C: 0.1 kernel: poly degree: 4 gamma: scale coef0: 0.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.6665 
 C: 0.1 kernel: poly degree: 4 gamma: scale coef0: 1.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.88 
 C: 0.1 kernel: poly degree: 4 gamma: scale coef0: 5.0 shirinking: True tol: 0.001 max_iter: -1 decision_function_shape: ovr random_state: None testAccuracy: 0.8625 
