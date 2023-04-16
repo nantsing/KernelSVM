@@ -103,13 +103,13 @@ if __name__ == '__main__':
 ########################################################################
 
 ########################### Linear SVM #################################
-    for C in [0.0001, 0.001, 0.01, 0.1, 1.0, 10.0]:
-        LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'linear', C = C, \
-            gamma = 'scale', coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr')
+    # for C in [0.0001, 0.001, 0.01, 0.1, 1.0, 10.0]:
+    #     LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'linear', C = C, \
+    #         gamma = 'scale', coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr')
     
 
     #### Count and plot support vectors
-    LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'linear', C = 1.0, \
+    LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'linear', C = 0.01, \
             gamma = 'scale', coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr')
     
     Indices = LinearSVM.support_
@@ -133,7 +133,10 @@ if __name__ == '__main__':
     SV_neg = np.array(SV_neg)
     SV_pos = np.array(SV_pos)
 
-    print(f'support vectors number: {len(support_vectors)}')
+    print(f'Total support vectors number: {len(support_vectors)}')
+    print(f'Positive support vectors number: {len(SV_neg)}')
+    print(f'Negtive support vectors number: {len(SV_pos)}')
+
 
     alpha_neg = np.abs(Alpha[Indices_neg])
     alpha_pos = Alpha[Indices_pos]
@@ -146,30 +149,30 @@ if __name__ == '__main__':
     SV_pos = SV_pos[sorted_i_pos]
     alpha_pos = alpha_pos[sorted_i_pos]
 
-    plot_sv(SV_neg[:20], alpha_neg[:20], 'Negative Support Vectors (C = 1.0)', './fig/SVnegative.png')
-    plot_sv(SV_pos[:20], alpha_pos[:20], 'Positive Support Vectors (C = 1.0)', './fig/SVpositive.png')
+    plot_sv(SV_neg[:20], alpha_neg[:20], 'Negative Support Vectors (C = 0.01)', './fig/SVnegative.png')
+    plot_sv(SV_pos[:20], alpha_pos[:20], 'Positive Support Vectors (C = 0.01)', './fig/SVpositive.png')
 
     # LinearSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'linear', C = 100.0, \
     #         gamma = 'scale', coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr', is_save = False)
 
 
 ########################### RBF kernel SVM #############################
-    for C in [0.5, 1.0, 5.0, 10.0]:
-        RBFSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'rbf', C = C, \
-            gamma = 0.002, coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr')
+#     for C in [0.5, 1.0, 5.0, 10.0]:
+#         RBFSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'rbf', C = C, \
+#             gamma = 0.002, coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr')
     
-    print(f'n_features: {RBFSVM.n_features_in_}')
-    print(f'X.var: {H_train.var()}')
+#     print(f'n_features: {RBFSVM.n_features_in_}')
+#     print(f'X.var: {H_train.var()}')
     
-    for gamma in [0.0001, 0.002, 'scale','auto']:
-        RBFSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'rbf', C = 5.0, \
-            gamma = gamma, coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr')
+#     for gamma in [0.0001, 0.002, 'scale','auto']:
+#         RBFSVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'rbf', C = 5.0, \
+#             gamma = gamma, coef0 = 0.0, shrinking = True, decision_function_shape = 'ovr')
 
-####################### Polynomial kernel SVM ###########################
-    for degree in [1, 2, 3, 4]:
-        PolySVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'poly', C = 0.5, \
-                    degree = degree, gamma = 'scale', coef0 = 1.0, shrinking = True, decision_function_shape = 'ovr')
+# ####################### Polynomial kernel SVM ###########################
+#     for degree in [1, 2, 3, 4]:
+#         PolySVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'poly', C = 0.5, \
+#                     degree = degree, gamma = 'scale', coef0 = 1.0, shrinking = True, decision_function_shape = 'ovr')
         
-    for coef0 in [0.0, 1.0, 5.0]:
-        PolySVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'poly', C = 0.1, \
-        degree = 4, gamma = 'scale', coef0 = coef0, shrinking = True, decision_function_shape = 'ovr')
+#     for coef0 in [0.0, 1.0, 5.0]:
+#         PolySVM = trainAndtest_SVM(H_train, Y_train, H_test, Y_test, kernel = 'poly', C = 0.1, \
+#         degree = 4, gamma = 'scale', coef0 = coef0, shrinking = True, decision_function_shape = 'ovr')
